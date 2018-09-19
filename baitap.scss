@@ -1,6 +1,22 @@
-$rong= width;
-@media only screen and (min-width: 768px) {
-	@for $z from 1 through 12 {
-	  .col-{$z} { $rong: 8.33% * $z; }
+$unit_width:1/12;
+@function calWidth($n){
+	@return percentage($n*$unit_width);
+}
+
+@mixin grid($size){
+	@for $i from 1 to 13 {
+		.col-#{$size}-#{$i}{
+			width: calWidth($i);
+		}
 	}
 }
+@include grid("s");
+
+@media all and (min-width : 790px){
+	@include grid ("m");
+	}
+
+@media all and (min-width : 1024px){
+	@include grid ("l");
+	}
+	
